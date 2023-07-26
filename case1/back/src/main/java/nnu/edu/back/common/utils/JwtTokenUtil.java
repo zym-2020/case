@@ -20,7 +20,7 @@ import nnu.edu.back.pojo.User;
  * @Description:
  */
 public class JwtTokenUtil {
-    private static String secret = "zym";
+    private static String secret = "secret";
     private static long expiration = 60*60*24*4;
     private static long failExpiration = 60*60*24*3;        //超期后再过三天
 
@@ -30,7 +30,7 @@ public class JwtTokenUtil {
     * @Date: 2023/7/25
     */
     private static String generateToken(Map<String, Object> claims) {
-        return Jwts.builder().setClaims(claims).setExpiration(generateExpirationDate()).signWith(SignatureAlgorithm.ES512, secret).compact();
+        return Jwts.builder().setClaims(claims).setExpiration(generateExpirationDate()).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
     /***
@@ -50,7 +50,7 @@ public class JwtTokenUtil {
     * @Date: 2023/7/25
     */
 
-    private static Claims getClaimsFromToken(String token) {
+    public static Claims getClaimsFromToken(String token) {
         Claims claims = null;
         try {
             claims = Jwts.parser()

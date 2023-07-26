@@ -16,4 +16,6 @@ public interface UserMapper {
     void insertUser(@Param("user") User user);
 
     String queryEmailByEmil(@Param("email") String email);
+
+    User queryUserByEmail(@Param("email") String email);
 }
